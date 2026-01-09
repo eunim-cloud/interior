@@ -1,0 +1,7 @@
+{
+  "name": "Interior Site Manager",
+  "description": "A calm and professional tool for interior design offices to manage sites and track real-time profitability without the stress of manual spreadsheets.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
