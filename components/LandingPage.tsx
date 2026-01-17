@@ -534,7 +534,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onLogin }) =>
       {/* Trust CTA Section */}
       <section className="py-40 px-6">
         <ScrollReveal>
-          <div className="max-w-5xl mx-auto bg-gray-900 rounded-[40px] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl">
+          <div className="max-w-7xl mx-auto bg-gray-900 rounded-[40px] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-80 h-80 bg-brand opacity-20 blur-[120px]"></div>
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-500 opacity-10 blur-[80px]"></div>
             <div className="relative z-10 space-y-10">
