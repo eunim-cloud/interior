@@ -147,9 +147,10 @@ const App: React.FC = () => {
   // 로그인 페이지
   if (view === 'LOGIN') {
     return (
-      <LoginPage 
+      <LoginPage
         onLoginSuccess={handleLoginSuccess}
         onNavigateToSignUp={() => setView('SIGNUP')}
+        onNavigateToLanding={() => setView('LANDING')}
       />
     );
   }
@@ -157,9 +158,10 @@ const App: React.FC = () => {
   // 회원가입 페이지
   if (view === 'SIGNUP') {
     return (
-      <SignUpPage 
+      <SignUpPage
         onSignUpSuccess={handleSignUpSuccess}
         onNavigateToLogin={() => setView('LOGIN')}
+        onNavigateToLanding={() => setView('LANDING')}
       />
     );
   }
@@ -167,9 +169,10 @@ const App: React.FC = () => {
   // 로그인되지 않은 상태에서 대시보드 접근 시 로그인 페이지로
   if (!session && (view === 'DASHBOARD' || view === 'PROJECT_DETAIL' || view === 'SETTINGS')) {
     return (
-      <LoginPage 
+      <LoginPage
         onLoginSuccess={handleLoginSuccess}
         onNavigateToSignUp={() => setView('SIGNUP')}
+        onNavigateToLanding={() => setView('LANDING')}
       />
     );
   }

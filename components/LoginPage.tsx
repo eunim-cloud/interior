@@ -6,9 +6,10 @@ import { signIn } from '../services/authService';
 interface LoginPageProps {
   onLoginSuccess: () => void;
   onNavigateToSignUp: () => void;
+  onNavigateToLanding?: () => void;
 }
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onNavigateToSignUp }) => {
+export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onNavigateToSignUp, onNavigateToLanding }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -69,7 +70,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess, onNavigate
             <Hammer size={32} strokeWidth={2.5} />
           </motion.div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">SiteFlow 로그인</h1>
-          <p className="text-gray-500">계정에 로그인하세요</p>
+          <p className="text-gray-500 mb-4">계정에 로그인하세요</p>
+          {onNavigateToLanding && (
+            <button
+              onClick={onNavigateToLanding}
+              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              ← 홈으로 돌아가기
+            </button>
+          )}
         </div>
 
         {/* 로그인 폼 */}

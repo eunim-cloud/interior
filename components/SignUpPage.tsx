@@ -9,9 +9,10 @@ import { signUp, UserRole } from '../services/authService';
 interface SignUpPageProps {
   onSignUpSuccess: () => void;
   onNavigateToLogin: () => void;
+  onNavigateToLanding?: () => void;
 }
 
-export const SignUpPage: React.FC<SignUpPageProps> = ({ onSignUpSuccess, onNavigateToLogin }) => {
+export const SignUpPage: React.FC<SignUpPageProps> = ({ onSignUpSuccess, onNavigateToLogin, onNavigateToLanding }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -152,7 +153,15 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onSignUpSuccess, onNavig
             <Hammer size={32} strokeWidth={2.5} />
           </motion.div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">회원가입</h1>
-          <p className="text-gray-500">새 계정을 만들어 시작하세요</p>
+          <p className="text-gray-500 mb-4">새 계정을 만들어 시작하세요</p>
+          {onNavigateToLanding && (
+            <button
+              onClick={onNavigateToLanding}
+              className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              ← 홈으로 돌아가기
+            </button>
+          )}
         </div>
 
         {/* 회원가입 폼 */}
