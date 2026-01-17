@@ -548,20 +548,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onLogin }) =>
               </p>
               
               {/* 요금제 카드 */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
-                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 w-full sm:w-72 h-48 flex flex-col justify-center">
-                  <p className="text-sm text-gray-400 mb-2">월간 결제</p>
-                  <p className="text-4xl font-bold mb-1">₩19,000<span className="text-lg font-normal text-gray-400">/월</span></p>
-                  <p className="text-xs text-gray-500">부가세 별도</p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-4">
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-10 w-full sm:w-96 h-56 flex flex-col justify-center">
+                  <p className="text-sm text-gray-400 mb-3">월간 결제</p>
+                  <p className="text-5xl font-bold mb-1">₩19,000<span className="text-xl font-normal text-gray-400">/월</span></p>
+                  <p className="text-sm text-gray-500">부가세 별도</p>
                 </div>
-                <div className="bg-brand/20 backdrop-blur-sm border border-brand/40 rounded-3xl p-8 w-full sm:w-72 h-48 flex flex-col justify-center relative">
+                <div className="bg-brand/20 backdrop-blur-sm border border-brand/40 rounded-3xl p-10 w-full sm:w-96 h-56 flex flex-col justify-center relative">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand px-4 py-1 rounded-full text-xs font-bold">
                     12% 할인
                   </div>
-                  <p className="text-sm text-blue-300 mb-2">연간 결제</p>
-                  <p className="text-4xl font-bold mb-1">₩200,000<span className="text-lg font-normal text-gray-400">/년</span></p>
-                  <p className="text-xs text-gray-500">월 16,667원 · 부가세 별도</p>
-                  <p className="text-xs text-brand mt-1">연 28,000원 절약</p>
+                  <p className="text-sm text-blue-300 mb-3">연간 결제</p>
+                  <p className="text-5xl font-bold mb-1">₩200,000<span className="text-xl font-normal text-gray-400">/년</span></p>
+                  <p className="text-sm text-gray-500">월 16,667원 · 부가세 별도</p>
+                  <p className="text-sm text-brand mt-2">연 28,000원 절약</p>
                 </div>
               </div>
 
