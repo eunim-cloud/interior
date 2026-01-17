@@ -191,8 +191,19 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onLogin }) =>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-48 pb-32 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+      <section className="pt-48 pb-32 px-6 overflow-hidden relative">
+        {/* Dot Pattern Background */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+                <circle cx="20" cy="20" r="1" fill="currentColor"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots)" />
+          </svg>
+        </div>
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center relative">
           <motion.div 
             className="space-y-8"
             initial={{ opacity: 0, x: -60 }}
@@ -213,7 +224,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onLogin }) =>
             </motion.div>
             
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.2]"
+              className="text-5xl md:text-[64px] font-bold tracking-tight leading-[80px]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
@@ -535,15 +546,33 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onLogin }) =>
                 정산에 쏟던 에너지를 디자인과 고객 상담에 돌려드리겠습니다. <br />
                 오늘 바로 첫 번째 현장을 등록해보세요.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              
+              {/* 요금제 카드 */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 w-full sm:w-72 h-48 flex flex-col justify-center">
+                  <p className="text-sm text-gray-400 mb-2">월간 결제</p>
+                  <p className="text-4xl font-bold mb-1">₩19,000<span className="text-lg font-normal text-gray-400">/월</span></p>
+                  <p className="text-xs text-gray-500">부가세 별도</p>
+                </div>
+                <div className="bg-brand/20 backdrop-blur-sm border border-brand/40 rounded-3xl p-8 w-full sm:w-72 h-48 flex flex-col justify-center relative">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand px-4 py-1 rounded-full text-xs font-bold">
+                    12% 할인
+                  </div>
+                  <p className="text-sm text-blue-300 mb-2">연간 결제</p>
+                  <p className="text-4xl font-bold mb-1">₩200,000<span className="text-lg font-normal text-gray-400">/년</span></p>
+                  <p className="text-xs text-gray-500">월 16,667원 · 부가세 별도</p>
+                  <p className="text-xs text-brand mt-1">연 28,000원 절약</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <button 
-                  onClick={onStart}
                   className="w-full sm:w-auto bg-brand text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all active:scale-95 shadow-xl shadow-brand/20"
                 >
-                  지금 무료로 시작하기
+                  문의하기
                 </button>
                 <button className="w-full sm:w-auto bg-transparent border border-white/20 text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-white/5 transition-all">
-                  요금제 확인하기
+                  서비스 소개서 받기
                 </button>
               </div>
             </div>
