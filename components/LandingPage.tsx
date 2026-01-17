@@ -104,6 +104,7 @@ const staggerItem = {
 
 interface LandingPageProps {
   onStart: () => void;
+  onLogin?: () => void;
 }
 
 interface FAQItemProps {
@@ -155,7 +156,7 @@ const BrowserMockup: React.FC<BrowserMockupProps> = ({ children, title }) => (
   </div>
 );
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({ onStart, onLogin }) => {
   return (
     <div className="bg-white text-gray-900 min-h-screen font-sans scroll-smooth">
       {/* Navigation */}
@@ -172,12 +173,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <a href="#showcase" className="hover:text-brand transition-colors">서비스 상세</a>
             <a href="#faq" className="hover:text-brand transition-colors">FAQ</a>
           </div>
-          <button 
-            onClick={onStart}
-            className="bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-brand transition-colors soft-shadow"
-          >
-            시작하기
-          </button>
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={onLogin || onStart}
+              className="text-gray-600 px-5 py-2.5 rounded-xl text-sm font-bold hover:text-brand hover:bg-gray-50 transition-colors"
+            >
+              로그인
+            </button>
+            <button 
+              onClick={onStart}
+              className="bg-gray-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-brand transition-colors soft-shadow"
+            >
+              시작하기
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -204,7 +213,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </motion.div>
             
             <motion.h1 
-              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1]"
+              className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.2]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}

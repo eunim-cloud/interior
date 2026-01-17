@@ -1,15 +1,37 @@
-
-import React from 'react';
-import { Hammer, LayoutDashboard, Settings, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { Hammer, LayoutDashboard, Settings, User, LogOut, ChevronDown } from 'lucide-react';
+import { UserProfile } from '../services/authService';
 
 interface LayoutProps {
   children: React.ReactNode;
   currentView: string;
   onNavigate: (view: any) => void;
   onHome: () => void;
+  userProfile?: UserProfile | null;
+  onLogout?: () => void;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigate, onHome }) => {
+export const Layout: React.FC<LayoutProps> = ({ 
+  children, 
+  currentView, 
+  onNavigate, 
+  onHome,
+  userProfile,
+  onLogout,
+}) => {
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const getRoleBadge = (role: string) => {
+    switch (role) {
+      case 'OFFICE':
+        return { label: '사무실', color: 'bg-indigo-100 text-indigo-700' };
+      case 'ADMIN':
+        return { label: '관리자', color: 'bg-purple-100 text-purple-700' };
+      default:
+        return { label: '시공팀', color: 'bg-blue-100 text-blue-700' };
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-surface font-sans">
       <header className="bg-white border-b border-gray-100 sticky top-0 z-50 soft-shadow">
@@ -41,10 +63,68 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentView, onNavigat
             </button>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-brand">
-              <User size={16} />
-            </div>
+          {/* 사용자 메뉴 */}
+          <div className="relative">
+            <button 
+              onClick={() => setShowUserMenu(!showUserMenu)}
+              className="flex items-center gap-3 hover:bg-gray-50 rounded-xl px-3 py-2 transition-colors"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                {userProfile?.name?.charAt(0) || <User size={16} />}
+              </div>
+              {userProfile && (
+                <div className="hidden md:block text-left">
+                  <p className="text-sm font-medium text-gray-800">{userProfile.name}</p>
+                  <p className="text-xs text-gray-500">{userProfile.company_name}</p>
+                </div>
+              )}
+              <ChevronDown size={16} className="text-gray-400" />
+            </button>
+
+            {/* 드롭다운 메뉴 */}
+            {showUserMenu && (
+              <>
+                <div 
+                  className="fixed inset-0 z-40" 
+                  onClick={() => setShowUserMenu(false)}
+                />
+                <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                  {userProfile && (
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="font-medium text-gray-800">{userProfile.name}</p>
+                      <p className="text-sm text-gray-500">{userProfile.email}</p>
+                      <div className="mt-2">
+                        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${getRoleBadge(userProfile.role).color}`}>
+                          {getRoleBadge(userProfile.role).label}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                  <button
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      onNavigate('SETTINGS');
+                    }}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    <Settings size={18} className="text-gray-400" />
+                    설정
+                  </button>
+                  {onLogout && (
+                    <button
+                      onClick={() => {
+                        setShowUserMenu(false);
+                        onLogout();
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                    >
+                      <LogOut size={18} />
+                      로그아웃
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </header>
